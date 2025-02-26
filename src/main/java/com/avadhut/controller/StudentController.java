@@ -1,7 +1,7 @@
-package com.avadhut.student.controller;
+package com.avadhut.controller;
 
-import com.avadhut.student.entity.StudentEntity;
-import com.avadhut.student.service.StudentService;
+import com.avadhut.entity.Student;
+import com.avadhut.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,12 +35,29 @@ public class StudentController {
 
 
     @GetMapping("getAllStudents")
-    public List<StudentEntity> getStudent() {
+    public List<Student> getStudent() {
         return studentService.getAllStudents();
     }
 
     @GetMapping("fetch/student/{id}")
-    public StudentEntity getStudentById(@PathVariable("id") Long id) {
+    public Student getStudentById(@PathVariable("id") Long id) {
         return studentService.getStudentById(id);
     }
+
+    @PostMapping("/saveStudent")
+    public Student addStudent(@RequestBody Student student) {
+        return studentService.saveStudent(student);
+    }
+
+    @PostMapping("updateStudent")
+    public Student updateStudent(@RequestBody Student student) {
+        return studentService.updateStudent(student);
+    }
+
+    @DeleteMapping("deleteStudent")
+    public void deleteEmployee(@RequestBody Student student) {
+        studentService.deleteStudent(student);
+    }
+
+
 }

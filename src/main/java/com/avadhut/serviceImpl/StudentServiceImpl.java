@@ -1,8 +1,8 @@
-package com.avadhut.student.serviceImpl;
+package com.avadhut.serviceImpl;
 
-import com.avadhut.student.entity.StudentEntity;
-import com.avadhut.student.repository.StudentRepository;
-import com.avadhut.student.service.StudentService;
+import com.avadhut.entity.Student;
+import com.avadhut.repository.StudentRepository;
+import com.avadhut.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +15,10 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentJpaRepository;
 
     /**
-     * @return StudentEntity
+     * @return Student
      */
     @Override
-    public List<StudentEntity> getAllStudents() {
+    public List<Student> getAllStudents() {
         return studentJpaRepository.findAll();
     }
 
@@ -27,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
      * @return
      */
     @Override
-    public StudentEntity getStudentById(Long id) {
+    public Student getStudentById(Long id) {
         return studentJpaRepository.findById(id).get();
     }
 
@@ -36,8 +36,8 @@ public class StudentServiceImpl implements StudentService {
      * @return
      */
     @Override
-    public StudentEntity saveStudent(StudentEntity student) {
-        return null;
+    public Student saveStudent(Student student) {
+        return studentJpaRepository.save(student);
     }
 
     /**
@@ -45,15 +45,15 @@ public class StudentServiceImpl implements StudentService {
      * @return
      */
     @Override
-    public StudentEntity updateStudent(StudentEntity student) {
-        return null;
+    public Student updateStudent(Student student) {
+        return studentJpaRepository.save(student);
     }
 
     /**
      * @param student
      */
     @Override
-    public void deleteStudent(StudentEntity student) {
-
+    public void deleteStudent(Student student) {
+        studentJpaRepository.delete(student);
     }
 }
